@@ -1,0 +1,28 @@
+<!--
+<h1>{{ product }}</h1>
+
+<ul>
+    <li> Seller: {{ product.seller }}</li>
+</ul>
+    
+<ul>
+    {% for seller in product.seller_set.all %}
+        <li> {{ seller }} </li>
+        <li> {{ seller.first_name }} {{ seller.last_name }} </li>
+    {% endfor %}
+</ul>
+-->
+
+<form action="{% url 'sellers:add' seller.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>{{ seller }}</h1></legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        
+        {% for product in seller.product_set.all %}
+            <input type="radio" name="product" id="product{{ forloop.counter }}" value="{{ product.id }}">
+            <label for="product{{ forloop.counter }}">{{ product }}</label><br>
+        {% endfor %}
+    </fieldset>
+    <input type="submit" value="Add">
+</form>

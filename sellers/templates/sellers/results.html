@@ -1,0 +1,9 @@
+<h1>{{ seller }}</h1>
+
+<ul>
+    {% for product in seller.product_set.all %}
+        <li>Quantity of {{ product }} -- {{ product.item_quantity }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'sellers:detail' seller.id %}">Add again?</a>

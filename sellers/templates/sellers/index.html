@@ -1,0 +1,12 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'sellers/style.css' %}">
+
+{% if latest_seller_list %}
+    <ul>
+    {% for seller in latest_seller_list %}
+        <li><a href="{% url 'sellers:detail' seller.id %}">{{ seller }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No products are available.</p>
+{% endif %}
